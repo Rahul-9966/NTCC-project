@@ -25,6 +25,14 @@ images_collection = db.medical_images
 
 router = APIRouter(prefix="/images", tags=["images"])
 
+# Database will be injected from main app
+images_collection = None
+
+def set_database(db):
+    """Set database connection from main app"""
+    global images_collection
+    images_collection = db.medical_images
+
 @router.post("/upload", response_model=ImageUploadResponse)
 async def upload_image(file: UploadFile = File(...)):
     """Upload a medical image for enhancement"""
