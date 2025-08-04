@@ -17,12 +17,6 @@ from services.image_service import image_service
 
 logger = logging.getLogger(__name__)
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
-images_collection = db.medical_images
-
 router = APIRouter(prefix="/images", tags=["images"])
 
 # Database will be injected from main app
