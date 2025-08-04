@@ -54,7 +54,11 @@ async def get_status_checks():
     return [StatusCheck(**status_check) for status_check in status_checks]
 
 # Include the images router
+from routers.images import set_database
 api_router.include_router(images_router)
+
+# Set database for images router
+set_database(db)
 
 # Include the main API router in the app
 app.include_router(api_router)
